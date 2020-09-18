@@ -88,13 +88,16 @@
                             $inc20 = $title[22][$i];
                         }
                     }
+                    if ($incT == $document['title']) {
+                        continue;
+                    }
 
                     $incA = $title[0][$i];
 
                     $sql = "SELECT `content` FROM `_article` WHERE `title` = '$incT'";
                     $result = mysqli_query($conn, $sql);
                     if(mysqli_num_rows($result) !== 1){
-                        break;
+                        continue;
                     }
                     $row = mysqli_fetch_assoc($result);
                     $incCon = documentRender($row['content'], FALSE, TRUE);
